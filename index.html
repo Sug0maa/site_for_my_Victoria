@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>С днём рождения, Виктория! 🎂</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+
+  background: linear-gradient(
+    135deg,
+    #ff758c,
+    #ff7eb3,
+    #8e8cff
+  );
+
+  background-size: 300% 300%;
+  animation: backgroundMove 10s ease infinite;
+
+  overflow-x: hidden;
+  color: white;
+}
+
+
+/* Фон */
+
+@keyframes backgroundMove {
+
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+
+}
+
+
+/* Основной контейнер */
+
+.page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px 15px;
+}
+
+
+/* Сама открытка */
+
+.card {
+  position: relative;
+
+  width: 100%;
+  max-width: 500px;
+
+  padding: 25px 18px;
+
+  border-radius: 30px;
+
+  background: rgba(255,255,255,0.18);
+
+  backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255,255,255,0.35);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.25);
+
+  text-align: center;
+
+  overflow: hidden;
+}
+
+
+/* ========================= */
+/* ОТКРЫВАШКА */
+/* ========================= */
+
+.cover {
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 20;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+  padding: 25px;
+
+  cursor: pointer;
+
+  background: linear-gradient(
+    135deg,
+    #ff4f81,
+    #ff8fab,
+    #9b8cff
+  );
+
+  transition:
+    transform 1.2s cubic-bezier(
+      0.68,
+      -0.05,
+      0.27,
+      1.05
+    );
+
+}
+
+
+/* Текст открывашки */
+
+.cover h1 {
+
+  font-size: clamp(
+    32px,
+    9vw,
+    55px
+  );
+
+  margin: 0 0 15px;
+
+  animation: floating 3s ease-in-out infinite;
+
+}
+
+
+.cover h2 {
+
+  font-size: 25px;
+
+  margin: 0 0 30px;
+
+}
+
+
+.cover p {
+
+  font-size: 16px;
+
+  opacity: 0.9;
+
+}
+
+
+/* Анимация текста */
+
+@keyframes floating {
+
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+}
+
+
+/* Кнопка */
+
+.open-button {
+
+  padding: 14px 25px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  background: white;
+
+  color: #ff4f81;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.25);
+
+}
+
+
+/* Открытие */
+
+.cover.open {
+
+  transform: translateY(-105%);
+
+}
+
+
+/* ========================= */
+/* СОДЕРЖИМОЕ */
+/* ========================= */
+
+
+/* Свечки */
+
+.candles {
+
+  font-size: 35px;
+
+  margin-bottom: 5px;
+
+}
+
+
+/* Фото */
+
+.photos {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 10px;
+
+  margin: 20px 0;
+
+}
+
+
+.photos img {
+
+  width: 100%;
+
+  height: 150px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.25);
+
+  transition:
+    transform 0.4s ease;
+
+}
+
+
+.photos img:hover {
+
+  transform:
+    scale(1.04)
+    rotate(1deg);
+
+}
+
+
+/* Первое фото большое */
+
+.photos img:first-child {
+
+  grid-column: span 2;
+
+  height: 220px;
+
+}
+
+
+/* Поздравление */
+
+.message {
+
+  margin-top: 20px;
+
+  padding: 20px;
+
+  border-radius: 20px;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.2
+  );
+
+  font-size: 17px;
+
+  line-height: 1.6;
+
+}
+
+
+/* ========================= */
+/* КОНФЕТТИ */
+/* ========================= */
+
+.confetti {
+
+  position: fixed;
+
+  width: 8px;
+  height: 14px;
+
+  top: -20px;
+
+  z-index: 100;
+
+  pointer-events: none;
+
+  animation:
+    confettiFall
+    linear
+    forwards;
+
+}
+
+
+@keyframes confettiFall {
+
+  to {
+
+    transform:
+      translateY(110vh)
+      rotate(720deg);
+
+    opacity: 0;
+
+  }
+
+}
+
+
+/* Телефон */
+
+@media (max-width: 450px) {
+
+  .card {
+
+    padding:
+      25px 15px;
+
+  }
+
+  .photos img {
+
+    height: 120px;
+
+  }
+
+  .photos img:first-child {
+
+    height: 180px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+  <div class="card">
+
+
+    <!-- ================= -->
+    <!-- ОТКРЫВАШКА -->
+    <!-- ================= -->
+
+    <div
+      class="cover"
+      id="cover"
+      onclick="openCard()"
+    >
+
+      <div class="candles">
+        🎂🕯️✨
+      </div>
+
+      <h1>
+        С днём рождения зайка! 🎉
+      </h1>
+
+      
+      
+      
+
+      <p>
+        Для тебя есть кое-что особенное...
+      </p>
+
+      <div class="open-button">
+        Открыть 🎁
+      </div>
+
+    </div>
+
+
+    <!-- ================= -->
+    <!-- СОДЕРЖИМОЕ -->
+    <!-- ================= -->
+
+
+    <div class="candles">
+      🎂✨🎂
+    </div>
+
+
+    <h1>
+      Виктория ❤️
+    </h1>
+
+
+    <!-- Фотографии -->
+
+    <div class="photos">
+
+      <img src="photo1.jpg">
+
+      <img src="photo2.jpg">
+
+      <img src="photo3.jpg">
+
+      <img src="photo4.jpg">
+
+      <img src="photo5.jpg">
+
+    </div>
+
+
+    <!-- Поздравление -->
+
+    <div class="message">
+
+      <p>
+
+        Я хочу пожелать тебе
+        огромного счастья, много
+        красивых и запоминающихся
+        моментов и как можно больше
+        поводов для улыбки ❤️
+
+      </p>
+
+      <p>
+
+        Пусть рядом всегда будут люди
+        с которыми тебе спокойно,
+        весело и хорошо
+
+      </p>
+
+      <p>
+
+        Желаю чтобы всё, о чём ты
+        мечтаешь постепенно становилось
+        реальностью
+
+      </p>
+
+      <p>
+
+        С днём рождения любимая зайка! 🎂💗
+
+      </p>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+
+function openCard() {
+
+  const cover =
+    document.getElementById("cover");
+
+  cover.classList.add("open");
+
+  createConfetti();
+
+}
+
+
+/* Конфетти */
+
+function createConfetti() {
+
+  for (
+    let i = 0;
+    i < 80;
+    i++
+  ) {
+
+    const confetti =
+      document.createElement("div");
+
+    confetti.className =
+      "confetti";
+
+    confetti.style.left =
+      Math.random() * 100 + "vw";
+
+    confetti.style.animationDuration =
+      (2 + Math.random() * 3) + "s";
+
+    confetti.style.background =
+      `hsl(
+        ${Math.random() * 360},
+        80%,
+        65%
+      )`;
+
+    confetti.style.transform =
+      `rotate(
+        ${Math.random() * 360}deg
+      )`;
+
+    document.body.appendChild(
+      confetti
+    );
+
+
+    setTimeout(() => {
+
+      confetti.remove();
+
+    }, 5000);
+
+  }
+
+}
+
+
+</script>
+
+
+</body>
+</html>
